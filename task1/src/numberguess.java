@@ -1,7 +1,8 @@
+package task1.src;
 import java.util.Scanner;
 import java.util.Random;
 
-public class main
+public class numberguess
 {
     public static void main(String[] args)
     {
@@ -17,13 +18,12 @@ public class main
             int x = random.nextInt(11);
 
             int counter = 3;
-            
 
             int guess = -1;
             while(guess != x)
             {
                 guess = scanner.nextInt();
-                if (guess != x & counter == 0) { System.out.println("You loose and lost your score (10)!\n"); counter = -1; break;}
+                if (guess != x & counter == 0) { System.out.println("You loose and lost your score (10)!\n"); counter = -1; break; }
                 if (guess < x) { System.out.println("Try again (higher), you have " + counter + " tries left"); counter--; }
                 if (guess > x) { System.out.println("Try again (smaller), you have " + counter + " tries left"); counter--; }
             }
@@ -32,3 +32,5 @@ public class main
         }
     }
 }
+
+
