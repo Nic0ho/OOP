@@ -49,8 +49,10 @@ public class Main
                     break;
                 case 'r':
                     System.out.println("Restore last saved.");
+                    System.out.println("Before restore: side = " + calc.getResult().getX());
                     try { calc.restore(); }
                     catch (Exception e) { System.out.println("Serialization error: " + e); }
+                    System.out.println("After restore (transient x lost): ");
                     calc.show();
                     break;
                 default:
