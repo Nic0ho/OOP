@@ -11,8 +11,10 @@ ___
 ### Структура
 ![project hierarchy](img/hierarchy.png)
 > **src\ex01**
-> * **Calc.java** - містить реалізацію методів для обчислення задачі і відображення результатів <details>
+> * **Calc.java** - містить реалізацію методів для обчислення задачі і відображення результатів 
+<details>
 <summary>Calc.java</summary>
+
 ```java
 package ex01;
 
@@ -83,7 +85,7 @@ public class Calc
     /** Виводить результат обчислень. */
     public void show()
     { System.out.println(result); }
-    
+
     /**
      * Зберігає {@linkplain Calc#result} у файлі {@linkplain Calc#FNAME}
      * @throws IOException
@@ -108,6 +110,7 @@ public class Calc
     }
 }
 ```
+
 </details>
 > * **Item2d.java** - містить вихідні дані та результати обчислень
 > * **Main.java** - містить обчислення і відображення результатів та реалізацію статичного метода main()
