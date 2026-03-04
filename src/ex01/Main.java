@@ -4,10 +4,19 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * Обчислення та відображення результатів.
+ * Містить реалізацію статичного методу main().
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see Main#main
+ */
 public class Main
 {
+    /** Об'єкт класу {@linkplain Calc}. Вирішує задачу обчислити суму площ рівностороннього трикутника та рівностороннього прямокутника за заданою довжиною сторони у двійковій системі числення. */
     private Calc calc = new Calc();
 
+    /** Відображає меню та обробляє команди користувача. */
     private void menu()
     {
         String s = null;
@@ -61,6 +70,13 @@ public class Main
         }
         while (s.charAt(0) != 'q');
     }
+
+    /**
+     * Виконується при запуску програми.
+     * Вираховується значення функції для різних аргументів.
+     * Результати обчислення виводяться на екран.
+     * @param args - параметри запуску програми.
+     */
     public static void main(String[] args)
     {
          Main main = new Main();

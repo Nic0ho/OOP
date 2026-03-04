@@ -6,8 +6,15 @@ import org.junit.Test;
 import java.io.IOException;
 import ex01.Calc;
 
+/**
+ * Виконує тестування розроблених класів.
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+
 public class MainTest
 {
+    /** Перевірка коректності обчислення суми площ. (головної функціональності класу {@linkplain Calc}) */
     @Test
     public void testCalc()
     {
@@ -23,6 +30,7 @@ public class MainTest
         assertEquals(Math.sqrt(3) + 4.0, calc.getResult().getY(), .1e-10);
     }
 
+    /** Перевірка серіалізації та демонстрація поведінки transient поля. */
     @Test
     public void testRestore()
     {
@@ -42,6 +50,7 @@ public class MainTest
             catch (Exception e) { Assert.fail(e.getMessage()); }
 
             assertEquals(y, calc.getResult().getY(), .1e-10);
+            /** x є transient тому після відновлення завжди 0.0 */
             assertEquals(0.0, calc.getResult().getX(), .1e-10);
         }
     }
