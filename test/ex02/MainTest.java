@@ -68,8 +68,6 @@ public class MainTest
         assertEquals(view1.getItems().size(), view2.getItems().size());
         // x є transient — після десеріалізації x = 0.0, тому порівнюємо лише y
         for (int i = 0; i < view1.getItems().size(); i++)
-            {
                 assertEquals("y mismatch at index " + i, view1.getItems().get(i).getY(), view2.getItems().get(i).getY(), 1e-10);
-            }
     }
 }
