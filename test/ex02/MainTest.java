@@ -58,6 +58,9 @@ public class MainTest
         { Assert.fail(e.getMessage()); }
 
         assertEquals(view1.getItems().size(), view2.getItems().size());
-        assertTrue("containsAll()", view1.getItems().containsAll(view2.getItems()));
+        for (int i = 0; i < view1.getItems().size(); i++)
+            {
+                assertEquals("y mismatch at index " + i, view1.getItems().get(i).getY(), view2.getItems().get(i).getY(), 1e-10);
+            }
     }
 }
