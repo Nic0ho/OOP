@@ -8,8 +8,14 @@ import java.io.IOException;
 import ex01.Item2d;
 import ex02.ViewResult;
 
+/**
+ * Виконує тестування розроблених класів.
+ * @author Артем Єдалов
+ * @version 2.0
+ */
 public class MainTest
 {
+    /** Перевірка основної функціональності класу {@linkplain ViewResult} */
     @Test
     public void testCalc()
     {
@@ -38,6 +44,7 @@ public class MainTest
         assertTrue(view.getItems().get(ctr).equals(item));
     }
 
+    /** Перевірка серіалізації. Коректність відновлення даних. */
     @Test
     public void testRestore()
     {
@@ -57,7 +64,9 @@ public class MainTest
         catch (Exception e)
         { Assert.fail(e.getMessage()); }
 
+        // Повинні завантажити стільки ж елементів, скільки зберегли
         assertEquals(view1.getItems().size(), view2.getItems().size());
+        // x є transient — після десеріалізації x = 0.0, тому порівнюємо лише y
         for (int i = 0; i < view1.getItems().size(); i++)
             {
                 assertEquals("y mismatch at index " + i, view1.getItems().get(i).getY(), view2.getItems().get(i).getY(), 1e-10);

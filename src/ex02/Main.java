@@ -4,13 +4,24 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/** Обчислення та відображення результатів.<br>
+ * Містить реалізацію статичного методу main()
+ * @author Артем Єдалов
+ * @version 2.0
+ * @see Main#main
+ */
 public class Main
 {
+    /** Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
     private View view;
 
+    /** Ініціалізує поле {@linkplain Main#view view}. */
     public Main(View view)
     { this.view = view; }
 
+    /** Відображає меню. */
     protected void menu()
     {
         String s = null;
@@ -60,6 +71,10 @@ public class Main
         while(s.charAt(0) != 'q');
     }
 
+    /** Виконується при запуску програми;
+     * викликає метод {@linkplain Main#menu() menu()}
+     * @param args - параметри запуску програми.
+     */
     public static void main(String[] args)
     {
         Main main = new Main(new ViewableResult().getView());
