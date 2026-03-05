@@ -31,7 +31,7 @@ public class Main
             do
             {
                 System.out.println("Enter command...");
-                System.out.print("'q'uit, 'view', 'g'enerate, 's'ave, 'r'estore: ");
+                System.out.print("'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: ");
                 try { s = in.readLine(); }
                 catch(IOException e)
                 { System.out.println("Error: " + e); System.exit(0); }
