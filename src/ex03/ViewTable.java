@@ -79,7 +79,6 @@ public class ViewTable extends ViewResult
             fmt.format("%s%d%s%2$d%s", "%", (width-3)/2, "s | %", "s\n");
             System.out.printf(fmt.toString(), "side ", "arrea sum ");
         }
-        
     }
 
     /** Виводить тіло таблиці шириною {@linkplain ViewTable#width} символів */
@@ -91,7 +90,6 @@ public class ViewTable extends ViewResult
             for(Item2d item : getItems())
                 System.out.printf(fmt.toString(), item.getX(), item.getY());
         }
-        
     }
 
     /**
