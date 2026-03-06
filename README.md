@@ -10,7 +10,7 @@ ___
 # Опис проєкту
 ### Структура
 ![project hierarchy](img/hierarchy.png)
-### **src\ex01**
+## **src\ex01**
 #### **Calc.java** - містить реалізацію методів для обчислення задачі і відображення результатів 
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -308,7 +308,7 @@ public class Main
 ```
 </details>
 
-### **test\ex01**
+## **test\ex01**
 #### **MainTest.java** - виконує тестування розроблених класів
 <details>
 <summary>MainTest.java</summary>
