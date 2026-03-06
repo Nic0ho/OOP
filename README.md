@@ -271,11 +271,6 @@ public class ViewResult implements View
 ```
 </details>
 
-```java
-
-```
-</details>
-
 #### **View.java** - Шаблон проєктування Factory Method.<br> ConcreteCreator: реалізує фабричний метод ```getView()```, що створює та повертає об'єкт ```ViewResult```.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -296,7 +291,7 @@ public class ViewResult implements View
 </details>
 
 ### **src\ex04**
-#### **Application.java** - 000.
+#### **Application.java** - Формує та відображає меню, реалізує шаблон Singleton.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -305,7 +300,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **ChangeConsoleCommand.java** - 000.
+#### **ChangeConsoleCommand.java** - Консольна команда Change Item, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -314,7 +309,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **ChangeItemCommand.java** - 000.
+#### **ChangeItemCommand.java** - Команда Change Item, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -323,7 +318,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **Command.java** - 000.
+#### **Command.java** - Інтерфейс команди або задачі, шаблони Command та Worker Thread.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -332,7 +327,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **ConsoleCommand.java** - 000.
+#### **ConsoleCommand.java** - Інтерфейс консольної команди, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -341,7 +336,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **GenerateConsoleCommand.java** - 000.
+#### **GenerateConsoleCommand.java** - Консольна команда Generate, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -350,7 +345,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **Main.java** - 000.
+#### **Main.java** - Обчислення та відображення результатів. Містить реалізацію статичного методу main(). 4-та версія класу, що був розроблений в ході виконання попередніх практичних.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -359,7 +354,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **Menu.java** - 000.
+#### **Menu.java** - Макрокоманда (шаблон Command), колекція об'єктів класу ConsoleCommand.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -368,7 +363,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **RestoreConsoleCommand.java** - 000.
+#### **RestoreConsoleCommand.java** - Консольна команда Restore, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -377,7 +372,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **SaveConsoleCommand.java** - 000.
+#### **SaveConsoleCommand.java** - Консольна команда Save, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
@@ -386,7 +381,7 @@ public class ViewResult implements View
 ```
 </details>
 
-#### **ViewConsoleCommand.java** - 000.
+#### **ViewConsoleCommand.java** - Консольна команда View, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
