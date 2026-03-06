@@ -9,10 +9,10 @@ ___
 5. Розробити клас для тестування функціональності програми.
 ___
 # Опис проєкту
-### Структура
+## Структура
 #### З пакетів ```ex01```, ```ex02``` та ```ex03``` (які були створені у ході виконання попередніх практичних) було використано класи ```ex01.Item2d```, ```ex02.ViewResult```, ```ex02.View```  та ```ex03.ViewableTable```
 ![project hierarchy](img/hierarchy.png)
-### **src\ex01**
+## **src\ex01**
 #### **Item2d.java** - містить вихідні дані та результати обчислень
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -113,7 +113,7 @@ public class Item2d implements Serializable
 ```
 </details>
 
-### **src\ex02**
+## **src\ex02**
 #### **ViewResult.java** - реалізує логіку: рахує суми площ, зберігає у ```ArrayList<Item2d>```, серіалізує.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -280,7 +280,7 @@ public class ViewResult implements View
 ```
 </details>
 
-### **src\ex03**
+## **src\ex03**
 #### **ViewableTable.java** - Шаблон проєктування Factory Method.<br> ConcreteCreator: реалізує фабричний метод ```getView()```, що створює та повертає об'єкт ```ViewTable```.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -290,7 +290,7 @@ public class ViewResult implements View
 ```
 </details>
 
-### **src\ex04**
+## **src\ex04**
 #### **Application.java** - Формує та відображає меню, реалізує шаблон Singleton.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -390,7 +390,7 @@ public class ViewResult implements View
 ```
 </details>
 
-### **test\ex04**
+## **test\ex04**
 #### **MainTest.java** - виконує тестування розроблених класів. 3-га версія класу з пакета ```ex01```, що був створений у ході виконання попередньої практичної.
 <details>
 <summary>MainTest.java</summary>
