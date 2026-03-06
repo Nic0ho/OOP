@@ -12,7 +12,7 @@ ___
 ### Структура
 #### З пакетів ```ex01``` та ```ex02``` (які були створені у ході виконання попередніх практичних) було використано класи ```ex01.Item2d```, ```ex02.ViewResult```, ```ex02.ViewableResult``` та ```ex02.Main```
 ![project hierarchy](img/hierarchy.png)
-### **src\ex01**
+## **src\ex01**
 #### **Item2d.java** - містить вихідні дані та результати обчислень
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -113,7 +113,7 @@ public class Item2d implements Serializable
 ```
 </details>
 
-### **src\ex02**
+## **src\ex02**
 #### **Main.java** - містить обчислення і відображення результатів та реалізацію статичного метода ```main()```. 2-га версія класу з пакета ```ex01```, що був створений у ході виконання попередньої практичної.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -387,7 +387,7 @@ public class ViewResult implements View
 ```
 </details>
 
-### **src\ex03**
+## **src\ex03**
 #### **Main.java** - успадковує меню від ```ex02.Main``` та запускає програму з `ViewableTable`. 3-тя версія класу з пакета ```ex02```, що був створений у ході виконання попередньої практичної.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -613,7 +613,7 @@ public class ViewTable extends ViewResult
 ```
 </details>
 
-### **test\ex03**
+## **test\ex03**
 #### **MainTest.java** - виконує тестування розроблених класів. 3-га версія класу з пакета ```ex01```, що був створений у ході виконання попередньої практичної.
 <details>
 <summary>MainTest.java</summary>
