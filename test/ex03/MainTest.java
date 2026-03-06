@@ -4,13 +4,18 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
 import java.io.IOException;
 import ex01.Item2d;
 import ex03.ViewTable;
 
+/**
+ * Виконує тестування розроблених класів.
+ * @author Артем Єдалов
+ * @version 3.0
+ */
 public class MainTest
 {
+    /** Перевірка основної функціональності класу {@linkplain ViewTable} */
     @Test
     public void testCalc()
     {
@@ -41,27 +46,28 @@ public class MainTest
         item.setXY(4.0, Math.pow(4,2)*Math.sqrt(3)/4.0 + Math.pow(4,2));
         assertTrue("expected:<" + item + "> but was:<" + tbl.getItems().get(ctr) + ">", tbl.getItems().get(ctr).equals(item));
     }
-    
-     @Test
+
+    /** Перевірка серіалізації. Коректність відновлення даних. */
+    @Test
     public void testRestore()
     {
         ViewTable tbl1 = new ViewTable(40, 1000);
         ViewTable tbl2 = new ViewTable();
-
+        // Обчислимо значення функції з випадковим кроком приросту аргументу
         tbl1.init(30, Math.random()*100.0);
-
+        // Збережемо колекцію tbl1.items
         try
         { tbl1.viewSave(); }
         catch (IOException e)
         { fail(e.getMessage()); }
-
+        // Завантажимо колекцію tbl2.items
         try
         { tbl2.viewRestore(); }
         catch (Exception e)
         { fail(e.getMessage()); }
-
+        // Повинні завантажити стільки ж елементів, скільки зберегли
         assertEquals(tbl1.getItems().size(), tbl2.getItems().size());
-
+        // x є transient — після десеріалізації x = 0.0, тому порівнюємо лише y
         for (int i = 0; i < tbl1.getItems().size(); i++)
             assertEquals("y mismatch at index " + i, tbl1.getItems().get(i).getY(), tbl2.getItems().get(i).getY(), 1e-10);
     }
