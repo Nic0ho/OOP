@@ -290,7 +290,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -300,7 +300,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -309,7 +309,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -318,7 +318,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -327,7 +327,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -336,7 +336,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -345,7 +345,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -354,7 +354,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -363,7 +363,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -372,7 +372,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -381,7 +381,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
@@ -390,7 +390,7 @@ public class ViewResult implements View
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
-```java>
+```java
 
 ```
 </details>
