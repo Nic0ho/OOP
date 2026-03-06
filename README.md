@@ -699,11 +699,93 @@ public class MainTest
 ___
 # Приклад роботи
 ### При звичайному запуску:
-![example1](img/example1.png)
-![example2](img/example2.png)
+```
+Enter command...
+'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: v
+View current.
+   side  | arrea sum 
+--------------------
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+       0 |    0,000
+--------------------
+Enter command...
+'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: g
+Random generation.
+Initialization...done.  
+   side  | arrea sum 
+--------------------
+       0 |    0,000
+      38 | 2055,544
+      76 | 8222,178
+     114 | 18499,899
+     151 | 32888,710
+     189 | 51388,610
+     227 | 73999,598
+     265 | 100721,675
+     303 | 131554,840
+     341 | 166499,095
+--------------------
+Enter command...
+'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: s
+Save current.
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      38 | 2055,544
+      76 | 8222,178
+     114 | 18499,899
+     151 | 32888,710
+     189 | 51388,610
+     227 | 73999,598
+     265 | 100721,675
+     303 | 131554,840
+     341 | 166499,095
+--------------------
+Enter command...
+'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: g
+Random generation.
+Initialization...done.
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      21 |  647,589
+      43 | 2590,357
+      64 | 5828,304
+      85 | 10361,429
+     106 | 16189,733
+     128 | 23313,215
+     149 | 31731,876
+     170 | 41445,716
+     191 | 52454,734
+--------------------
+Enter command...
+'q'uit, 'v'iew, 'g'enerate, 's'ave, 'r'estore: r
+Restore last saved.
+   side  | arrea sum
+--------------------
+       0 |    0,000
+       0 | 2055,544
+       0 | 8222,178
+       0 | 18499,899
+       0 | 32888,710
+       0 | 51388,610
+       0 | 73999,598
+       0 | 100721,675
+       0 | 131554,840
+       0 | 166499,095
+--------------------
+```
 ### При запуску + дебаг (для прикладу демонстрована спроба відновити  не існуюче збереження при увімкнених примусових зупинках неочікуваних виключень):
-![test example1](img/debugrestoreerorr.png)
-![test example2](img/exampleres.png)
+![test example1](img/debug1.png)
+![test example2](img/debug2.png)
 ### Результати тесту через JUnit Test:
 ![test result 1](img/junit1.png)
 ![test result 2](img/junit2.png)
