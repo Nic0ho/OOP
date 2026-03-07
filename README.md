@@ -276,6 +276,40 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex02;
+
+import java.io.IOException;
+
+/** Product
+ * (шаблон проектування Factory Method)<br>
+ * Інтерфейс "фабрикованих" об'єктів.<br>
+ * Оголошує методи відображення об'єктів.
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public interface View
+{
+    /** Відображає заголовок */
+    public void viewHeader();
+
+    /** Відображає основну частину */
+    public void viewBody();
+
+    /** Відображає закінчення */
+    public void viewFooter();
+
+    /** Відображає об'єкт повністю */
+    public void viewShow();
+
+    /** Виконує ініціалізацію */
+    public void viewInit();
+
+    /** Зберігає дані для подальшого відновлення */
+    public void viewSave() throws IOException;
+    
+    /** Відновлює раніше збережені дані */
+    public void viewRestore() throws Exception;
+}
 
 ```
 </details>
@@ -286,7 +320,28 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex03;
 
+import ex02.ViewableResult;
+import ex02.View;
+
+/**
+ * ConcreteCreator
+ * (шаблон проектування Factory Method)<br>
+ * Реалізує фабричний метод {@linkplain ViewableTable#getView() getView()},
+ * що створює та повертає об'єкт {@linkplain ViewTable}.
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see ViewableResult
+ * @see ViewableTable#getView()
+ */
+public class ViewableTable extends ViewableResult
+{
+    /** Створює об'єкт відображення {@linkplain ViewTable} */
+    @Override
+    public View getView()
+    { return new ViewTable(); }
+}
 ```
 </details>
 
@@ -296,7 +351,67 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import ex02.View;
+import ex03.ViewableTable;
+
+/**
+ * Формує та відображає меню; реалізує шаблон Singleton
+ * @author Артем Єдалов
+ * @version 1.0
+*/
+public class Application
+{
+    /**
+     * Посилання на екземпляр класу Application; шаблон Singleton
+     * @see Application
+    */
+    private static Application instance = new Application();
+
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d};
+     * ініціалізується за допомогою Factory Method
+    */
+    private View view = new ViewableTable().getView();
+
+    /**
+     * Об'єкт класу {@linkplain Menu};
+     * макрокоманда (шаблон Command)
+    */
+    private Menu menu = new Menu();
+
+    /**
+     * Закритий конструктор; шаблон Singleton
+     * @see Application
+    */
+    private Application() { }
+    
+    /**
+     * Повертає посилання на екземпляр класу Application; шаблон Singleton
+     * @return єдиний екземпляр {@linkplain Application}
+     * @see Application
+    */
+    public static Application getInstance()
+    { return instance; }
+
+    /**
+     * Обробка команд користувача
+     * @see Application
+    */
+    public void run()
+    {
+        menu.add(new ViewConsoleCommand(view));
+        menu.add(new GenerateConsoleCommand(view));
+        menu.add(new ChangeConsoleCommand(view));
+        menu.add(new SaveConsoleCommand(view));
+        menu.add(new RestoreConsoleCommand(view));
+        menu.execute();
+    }
+
+    
+}
 ```
 </details>
 
@@ -305,7 +420,67 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import ex01.Item2d;
+import ex02.View;
+import ex02.ViewResult;
+
+/**
+ * Консольна команда Change item; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public class ChangeConsoleCommand extends ChangeItemCommand implements ConsoleCommand
+{
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
+    private View view;
+
+    /**
+     * Повертає поле {@linkplain ChangeConsoleCommand#view}
+     * @return значення {@linkplain ChangeConsoleCommand#view}
+     */
+    public View getView()
+    { return view; }
+
+    /**
+     * Встановлює поле {@linkplain ChangeConsoleCommand#view}
+     * @param view значення для {@linkplain ChangeConsoleCommand#view}
+     * @return нове значення {@linkplain ChangeConsoleCommand#view}
+     */
+    public View setView(View view)
+    { return this.view = view; }
+
+    /**
+     * Ініціалізує поле {@linkplain ChangeConsoleCommand#view}
+     * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
+     */
+    public ChangeConsoleCommand(View view)
+    { this.view = view; }
+
+    @Override
+    public char getKey()
+    { return 'c'; }
+
+    @Override
+    public String toString()
+    { return "'c'hange"; }
+
+    @Override
+    public void execute()
+    {
+        System.out.println("Change item: scale factor " + setOffset(Math.random() * 100.0));
+        for (Item2d item : ((ViewResult)view).getItems())
+        {
+            super.setItem(item);
+            super.execute();
+        }
+        view.viewShow();
+    }
+}
 ```
 </details>
 
@@ -314,6 +489,57 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
+
+import ex01.Item2d;
+
+/**
+ * Команда масштабування елемента; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public class ChangeItemCommand implements Command
+{
+    /** Об'єкт що обробляється; шаблон Command */
+    private Item2d item;
+
+    /** Параметр команди; шаблон Command */
+    private double offset;
+
+    /**
+     * Встановлює поле {@linkplain ChangeItemCommand#item}
+     * @param item значення для {@linkplain ChangeItemCommand#item}
+     * @return нове значення {@linkplain ChangeItemCommand#item}
+     */
+    public Item2d setItem(Item2d item)
+    { return this.item = item; }
+
+    /**
+     * Повертає поле {@linkplain ChangeItemCommand#item}
+     * @return значення {@linkplain ChangeItemCommand#item}
+     */
+    public Item2d getItem()
+    { return item; }
+
+    /**
+     * Встановлює поле {@linkplain ChangeItemCommand#offset}
+     * @param offset значення для {@linkplain ChangeItemCommand#offset}
+     * @return нове значення {@linkplain ChangeItemCommand#offset}
+     */
+    public double setOffset(double offset)
+    { return this.offset = offset; }
+
+    /**
+     * Повертає поле {@linkplain ChangeItemCommand#offset}
+     * @return значення {@linkplain ChangeItemCommand#offset}
+     */
+    public double getOffset()
+    { return offset; }
+
+    /** Множить {@linkplain ChangeItemCommand#item}.y на {@linkplain ChangeItemCommand#offset} */
+    public void execute()
+    { item.setY(item.getY() * offset); }
+}
 
 ```
 </details>
@@ -323,7 +549,19 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+/**
+ * Інтерфейс команди або задачі;
+ * шаблони: Command, Worker Thread
+ * @author Артем Єдалов
+ * @version 1.0
+*/
+public interface Command
+{
+    /** Виконання команди; шаблони: Command, Worker Thread */
+    public void execute();    
+}
 ```
 </details>
 
@@ -332,7 +570,21 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+/**
+ * Інтерфейс консольної команди; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+*/
+public interface ConsoleCommand extends Command
+{
+    /**
+     * Гаряча клавіша команди; шаблон Command
+     * @return символ гарячої клавіші
+    */
+    public char getKey();
+}
 ```
 </details>
 
@@ -341,7 +593,46 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import ex02.View;
+
+/**
+ * Консольна команда Generate; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public class GenerateConsoleCommand implements ConsoleCommand
+{
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
+    private View view;
+
+    /**
+     * Ініціалізує поле {@linkplain GenerateConsoleCommand#view}
+     * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
+     */
+    public GenerateConsoleCommand(View view)
+    { this.view = view; }
+
+    @Override
+    public char getKey()
+    { return 'g'; }
+
+    @Override
+    public String toString()
+    { return "'g'enerate"; }
+
+    @Override
+    public void execute()
+    {
+        System.out.println("Random generation.");
+        view.viewInit();
+        view.viewShow();
+    }
+}
 ```
 </details>
 
@@ -350,7 +641,28 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+/**
+ * Обчислення та відображення результатів.<br>
+ * Містить реалізацію статичного методу main()
+ * @author Артем Єдалов
+ * @version 4.0
+ * @see Main#main
+ */
+public class Main
+{
+    public static void main(String[] args)
+    {
+        /**
+         * Виконується при запуску програми;
+         * викликає метод {@linkplain Application#run()}
+         * @param args - параметри запуску програми
+        */
+        Application app = Application.getInstance();
+        app.run();
+    }
+}
 ```
 </details>
 
@@ -359,7 +671,87 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Макрокоманда (шаблон Command);<br>
+ * Колекція об'єктів класу {@linkplain ConsoleCommand}
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see ConsoleCommand
+ */
+public class Menu implements Command
+{
+    /**
+     * Колекція консольних команд
+     * @see ConsoleCommand
+     */
+    private List<ConsoleCommand> menu = new ArrayList<ConsoleCommand>();
+
+    /**
+     * Додає нову команду до колекції
+     * @param command реалізує {@linkplain ConsoleCommand}
+     * @return command
+     */
+    public ConsoleCommand add(ConsoleCommand command)
+    {
+        menu.add(command);
+        return command;
+    }
+
+    @Override
+    public String toString()
+    {
+        String s = "Enter command...\n";
+        for(ConsoleCommand c: menu)
+            s += c + ", ";
+        s += "'q'uit: ";
+        return s;
+    }
+
+    @Override
+    public void execute()
+    {
+        String s = null;
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        menu: while(true)
+        {
+            do
+            {
+                System.out.print(this);
+                try { s = in.readLine(); }
+                catch(IOException e)
+                {
+                    System.err.println("Error: " + e);
+                    System.exit(0);
+                }
+            }
+            while(s.length() != 1);
+            char key = s.charAt(0);
+            if(key == 'q')
+            {
+                System.out.println("Exit.");
+                break menu;
+            }
+            for(ConsoleCommand c : menu)
+            {
+                if (s.charAt(0) == c.getKey())
+                {
+                    c.execute();
+                    continue menu;
+                }
+            }
+            System.out.println("Wrong command.");
+            continue menu;
+        }
+    }
+}
 ```
 </details>
 
@@ -368,7 +760,47 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import ex02.View;
+
+/**
+ * Консольна команда Restore; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public class RestoreConsoleCommand implements ConsoleCommand
+{
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
+    private View view;
+
+    /**
+     * Ініціалізує поле {@linkplain RestoreConsoleCommand#view}
+     * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
+     */
+    public RestoreConsoleCommand(View view)
+    { this.view = view; }
+
+    @Override
+    public char getKey()
+    { return 'r'; }
+
+    @Override
+    public String toString()
+    { return "'r'estore"; }
+
+    @Override
+    public void execute()
+    {
+        System.out.println("Restore last saved.");
+        try { view.viewRestore(); }
+        catch(Exception e) { System.err.println("Serialization error:" + e); }
+        view.viewShow();
+    }
+}
 ```
 </details>
 
@@ -377,7 +809,49 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import java.io.IOException;
+import ex02.View;
+
+/**
+ * Консольна команда Save; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public class SaveConsoleCommand implements ConsoleCommand
+{
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
+    private View view;
+
+    /**
+     * Ініціалізує поле {@linkplain SaveConsoleCommand#view}
+     * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
+     */
+    public SaveConsoleCommand(View view)
+    { this.view = view; }
+
+    @Override
+    public char getKey()
+    { return 's'; }
+
+    @Override
+    public String toString()
+    { return "'s'ave"; }
+
+    @Override
+    public void execute()
+    {
+        System.out.println("Save current.");
+        try { view.viewSave(); }
+        catch(IOException e)
+        { System.err.println("Serialization error: " + e); }
+        view.viewShow();
+    }
+}
 ```
 </details>
 
@@ -386,7 +860,45 @@ public class ViewResult implements View
 <summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
+package ex04;
 
+import ex02.View;
+
+/**
+ * Консольна команда View; шаблон Command
+ * @author Артем Єдалов
+ * @version 1.0
+ */
+public class ViewConsoleCommand implements ConsoleCommand
+{
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
+    private View view;
+
+    /**
+     * Ініціалізує поле {@linkplain ViewConsoleCommand#view}
+     * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
+     */
+    public ViewConsoleCommand(View view)
+    { this.view = view; }
+
+    @Override
+    public char getKey()
+    { return 'v'; }
+
+    @Override
+    public String toString()
+    { return "'v'iew"; }
+
+    @Override
+    public void execute()
+    {
+        System.out.println("View current.");
+        view.viewShow();
+    }
+}
 ```
 </details>
 
@@ -396,7 +908,52 @@ public class ViewResult implements View
 <summary>MainTest.java</summary>
 
 ```java
+package test.ex04;
 
+import static org.junit.Assert.*;
+import org.junit.Test;
+import ex01.Item2d;
+import ex02.ViewResult;
+import ex04.ChangeItemCommand;
+import ex04.ChangeConsoleCommand;
+
+/**
+ * Тестування класу {@linkplain ChangeItemCommand}
+ * @author Артем Єдалов
+ * @version 4.0
+ * @see ChangeItemCommand
+ */
+public class MainTest
+{
+    /** Перевірка методу {@linkplain ChangeItemCommand#execute()} */
+    @Test
+    public void testExecute()
+    {
+        ChangeItemCommand cmd = new ChangeItemCommand();
+        cmd.setItem(new Item2d());
+        double x, y, offset;
+
+        for (int ctr = 0; ctr < 1000; ctr++)
+        {
+            cmd.getItem().setXY(x = Math.random() * 100.0, y = Math.random() * 100.0);
+            cmd.setOffset(offset = Math.random() * 100.0);
+            cmd.execute();
+            assertEquals(x, cmd.getItem().getX(), 1e-10);
+            assertEquals(y * offset, cmd.getItem().getY(), 1e-10);
+        }
+    }
+
+    /** Перевірка основної функціональності класу {@linkplain ChangeConsoleCommand} */
+    @Test
+    public void testChangeConsoleCommand()
+    {
+        ChangeConsoleCommand cmd = new ChangeConsoleCommand(new ViewResult());
+        cmd.getView().viewInit();
+        cmd.execute();
+        assertEquals("'c'hange", cmd.toString());
+        assertEquals('c', cmd.getKey());
+    }
+}
 ```
 </details>
 

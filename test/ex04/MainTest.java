@@ -7,8 +7,15 @@ import ex02.ViewResult;
 import ex04.ChangeItemCommand;
 import ex04.ChangeConsoleCommand;
 
+/**
+ * Тестування класу {@linkplain ChangeItemCommand}
+ * @author Артем Єдалов
+ * @version 4.0
+ * @see ChangeItemCommand
+ */
 public class MainTest
 {
+    /** Перевірка методу {@linkplain ChangeItemCommand#execute()} */
     @Test
     public void testExecute()
     {
@@ -26,6 +33,7 @@ public class MainTest
         }
     }
 
+    /** Перевірка основної функціональності класу {@linkplain ChangeConsoleCommand} */
     @Test
     public void testChangeConsoleCommand()
     {

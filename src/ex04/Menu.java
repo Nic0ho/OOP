@@ -6,10 +6,26 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Макрокоманда (шаблон Command);<br>
+ * Колекція об'єктів класу {@linkplain ConsoleCommand}
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see ConsoleCommand
+ */
 public class Menu implements Command
 {
+    /**
+     * Колекція консольних команд
+     * @see ConsoleCommand
+     */
     private List<ConsoleCommand> menu = new ArrayList<ConsoleCommand>();
 
+    /**
+     * Додає нову команду до колекції
+     * @param command реалізує {@linkplain ConsoleCommand}
+     * @return command
+     */
     public ConsoleCommand add(ConsoleCommand command)
     {
         menu.add(command);
