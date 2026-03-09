@@ -49,13 +49,14 @@ public class Application
     */
     public void run()
     {
+        ChangeConsoleCommand change = new ChangeConsoleCommand(view);
+        
         menu.add(new ViewConsoleCommand(view));
         menu.add(new GenerateConsoleCommand(view));
-        menu.add(new ChangeConsoleCommand(view));
+        menu.add(change);
+        menu.add(new UndoConsoleCommand(change));
         menu.add(new SaveConsoleCommand(view));
         menu.add(new RestoreConsoleCommand(view));
         menu.execute();
     }
-
-    
 }

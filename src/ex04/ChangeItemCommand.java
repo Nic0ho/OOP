@@ -45,7 +45,7 @@ public class ChangeItemCommand implements Command
     public double getOffset()
     { return offset; }
 
-    /** Множить {@linkplain ChangeItemCommand#item}.y на {@linkplain ChangeItemCommand#offset} */
+    @Override
     public void execute()
     { item.setY(item.getY() * offset); }
 }

@@ -39,6 +39,13 @@ public class ChangeConsoleCommand extends ChangeItemCommand implements ConsoleCo
     public ChangeConsoleCommand(View view)
     { this.view = view; }
 
+    public void undo()
+    {
+        for (Item2d item : ((ViewResult)view).getItems())
+            item.setY(item.getY() / getOffset());
+        view.viewShow();
+    }
+
     @Override
     public char getKey()
     { return 'c'; }
