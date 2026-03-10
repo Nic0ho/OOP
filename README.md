@@ -7,7 +7,7 @@ ___
 ___
 # Опис проєкту
 ## Структура
-#### З пакетів ```ex01```, ```ex02``` та ```ex03``` (які були створені у ході виконання попередніх практичних) було використано класи ```ex01.Item2d```, ```ex02.ViewResult```, ```ex02.View```  та ```ex03.ViewableTable```
+#### З пакетів ```ex01```, ```ex02``` та ```ex04``` (які були створені у ході виконання попередніх практичних) було використано класи ```ex01.Item2d```, ```ex02.ViewResult```, ```ex02.ViewableResult```, ```ex02.View```, ```ex04.Command```, ```ex04.ConsoleCommand```, ```ex04.ChangeConsoleCommand```, ```ex04.GenerateConsoleCommand```, ```ex04.ViewConsoleCommand```, ```ex04.UndoConsoleCommand```, ```ex04.RestoreConsoleCommand```, ```ex04.SaveConsoleCommand``` та ```ex04.Menu```
 ![project hierarchy](img/hierarchy.png)
 ## **src\ex01**
 #### **Item2d.java** - містить вихідні дані та результати обчислень
@@ -268,6 +268,31 @@ public class ViewResult implements View
 ```
 </details>
 
+#### **ViewableResult.java** - Шаблон проєктування Factory Method.<br> ConcreteCreator: реалізує фабричний метод ```getView()```, що створює та повертає об'єкт ```ViewResult```.
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+package ex02;
+
+/** ConcreteCreator
+ * (шаблон проектування Factory Method)<br>
+ * Оголошує метод, що "фабрикує" об'єкти.
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see Viewable
+ * @see ViewableResult#getView()
+ */
+public class ViewableResult implements Viewable
+{
+    /** Створює об'єкт відображення {@linkplain ViewResult} */
+    @Override
+    public View getView()
+    { return new ViewResult(); }
+}
+```
+</details>
+
 #### **View.java** - Шаблон проєктування Factory Method.<br> ConcreteCreator: реалізує фабричний метод ```getView()```, що створює та повертає об'єкт ```ViewResult```.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -311,107 +336,7 @@ public interface View
 ```
 </details>
 
-## **src\ex03**
-#### **ViewableTable.java** - Шаблон проєктування Factory Method.<br> ConcreteCreator: реалізує фабричний метод ```getView()```, що створює та повертає об'єкт ```ViewTable```.
-<details>
-<summary>ПЕРЕГЛЯНУТИ</summary>
-
-```java
-package ex03;
-
-import ex02.ViewableResult;
-import ex02.View;
-
-/**
- * ConcreteCreator
- * (шаблон проектування Factory Method)<br>
- * Реалізує фабричний метод {@linkplain ViewableTable#getView() getView()},
- * що створює та повертає об'єкт {@linkplain ViewTable}.
- * @author Артем Єдалов
- * @version 1.0
- * @see ViewableResult
- * @see ViewableTable#getView()
- */
-public class ViewableTable extends ViewableResult
-{
-    /** Створює об'єкт відображення {@linkplain ViewTable} */
-    @Override
-    public View getView()
-    { return new ViewTable(); }
-}
-```
-</details>
-
 ## **src\ex04**
-#### **Application.java** - Формує та відображає меню, реалізує шаблон Singleton.
-<details>
-<summary>ПЕРЕГЛЯНУТИ</summary>
-
-```java
-package ex04;
-
-import ex02.View;
-import ex03.ViewableTable;
-
-/**
- * Формує та відображає меню; реалізує шаблон Singleton
- * @author Артем Єдалов
- * @version 1.0
-*/
-public class Application
-{
-    /**
-     * Посилання на екземпляр класу Application; шаблон Singleton
-     * @see Application
-    */
-    private static Application instance = new Application();
-
-    /**
-     * Об'єкт, що реалізує інтерфейс {@linkplain View};
-     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d};
-     * ініціалізується за допомогою Factory Method
-    */
-    private View view = new ViewableTable().getView();
-
-    /**
-     * Об'єкт класу {@linkplain Menu};
-     * макрокоманда (шаблон Command)
-    */
-    private Menu menu = new Menu();
-
-    /**
-     * Закритий конструктор; шаблон Singleton
-     * @see Application
-    */
-    private Application() { }
-    
-    /**
-     * Повертає посилання на екземпляр класу Application; шаблон Singleton
-     * @return єдиний екземпляр {@linkplain Application}
-     * @see Application
-    */
-    public static Application getInstance()
-    { return instance; }
-
-    /**
-     * Обробка команд користувача
-     * @see Application
-    */
-    public void run()
-    {
-        menu.add(new ViewConsoleCommand(view));
-        menu.add(new GenerateConsoleCommand(view));
-        menu.add(new ChangeConsoleCommand(view));
-        menu.add(new SaveConsoleCommand(view));
-        menu.add(new RestoreConsoleCommand(view));
-        menu.execute();
-    }
-
-    
-}
-```
-</details>
-
 #### **ChangeConsoleCommand.java** - Консольна команда Change Item, шаблон Command.
 <details>
 <summary>ПЕРЕГЛЯНУТИ</summary>
@@ -490,66 +415,6 @@ public class ChangeConsoleCommand extends ChangeItemCommand implements ConsoleCo
         view.viewShow();
     }
 }
-```
-</details>
-
-#### **ChangeItemCommand.java** - Команда Change Item, шаблон Command.
-<details>
-<summary>ПЕРЕГЛЯНУТИ</summary>
-
-```java
-package ex04;
-
-import ex01.Item2d;
-
-/**
- * Команда масштабування елемента; шаблон Command
- * @author Артем Єдалов
- * @version 1.0
- */
-public class ChangeItemCommand implements Command
-{
-    /** Об'єкт що обробляється; шаблон Command */
-    private Item2d item;
-
-    /** Параметр команди; шаблон Command */
-    private double offset;
-
-    /**
-     * Встановлює поле {@linkplain ChangeItemCommand#item}
-     * @param item значення для {@linkplain ChangeItemCommand#item}
-     * @return нове значення {@linkplain ChangeItemCommand#item}
-     */
-    public Item2d setItem(Item2d item)
-    { return this.item = item; }
-
-    /**
-     * Повертає поле {@linkplain ChangeItemCommand#item}
-     * @return значення {@linkplain ChangeItemCommand#item}
-     */
-    public Item2d getItem()
-    { return item; }
-
-    /**
-     * Встановлює поле {@linkplain ChangeItemCommand#offset}
-     * @param offset значення для {@linkplain ChangeItemCommand#offset}
-     * @return нове значення {@linkplain ChangeItemCommand#offset}
-     */
-    public double setOffset(double offset)
-    { return this.offset = offset; }
-
-    /**
-     * Повертає поле {@linkplain ChangeItemCommand#offset}
-     * @return значення {@linkplain ChangeItemCommand#offset}
-     */
-    public double getOffset()
-    { return offset; }
-
-    /** Множить {@linkplain ChangeItemCommand#item}.y на {@linkplain ChangeItemCommand#offset} */
-    public void execute()
-    { item.setY(item.getY() * offset); }
-}
-
 ```
 </details>
 
@@ -640,36 +505,6 @@ public class GenerateConsoleCommand implements ConsoleCommand
         System.out.println("Random generation.");
         view.viewInit();
         view.viewShow();
-    }
-}
-```
-</details>
-
-#### **Main.java** - Обчислення та відображення результатів. Містить реалізацію статичного методу main(). 4-та версія класу, що був розроблений в ході виконання попередніх практичних.
-<details>
-<summary>ПЕРЕГЛЯНУТИ</summary>
-
-```java
-package ex04;
-
-/**
- * Обчислення та відображення результатів.<br>
- * Містить реалізацію статичного методу main()
- * @author Артем Єдалов
- * @version 4.0
- * @see Main#main
- */
-public class Main
-{
-    public static void main(String[] args)
-    {
-        /**
-         * Виконується при запуску програми;
-         * викликає метод {@linkplain Application#run()}
-         * @param args - параметри запуску програми
-        */
-        Application app = Application.getInstance();
-        app.run();
     }
 }
 ```
@@ -954,10 +789,75 @@ public class ViewConsoleCommand implements ConsoleCommand
 ```
 </details>
 
-## **test\ex04**
+
+## **src\ex05**
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+#### **MainTest.java** - .
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+
+```
+</details>
+
+## **test\ex05**
 #### **MainTest.java** - виконує тестування розроблених класів. 3-га версія класу з пакета ```ex01```, що був створений у ході виконання попередньої практичної.
 <details>
-<summary>MainTest.java</summary>
+<summary>ПЕРЕГЛЯНУТИ</summary>
 
 ```java
 package test.ex04;
