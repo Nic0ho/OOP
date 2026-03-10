@@ -1016,12 +1016,271 @@ ___
 # Приклад роботи
 ### При звичайному запуску:
 ```
-
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: g
+Random generation.
+Initialization...done.  
+   side  | arrea sum 
+--------------------
+       0 |    0,000
+      39 | 2137,031
+      77 | 8548,123
+     116 | 19233,278
+     154 | 34192,494
+     193 | 53425,771
+     232 | 76933,111
+     270 | 104714,512
+     309 | 136769,974
+     348 | 173099,499
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: s
+Save current.
+   side  | arrea sum 
+--------------------
+       0 |    0,000
+      39 | 2137,031
+      77 | 8548,123
+     116 | 19233,278
+     154 | 34192,494
+     193 | 53425,771
+     232 | 76933,111
+     270 | 104714,512
+     309 | 136769,974
+     348 | 173099,499
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+Change item: scale factor 72.22393225419418
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      39 | 154344,771
+      77 | 617379,085
+     116 | 1389102,941
+     154 | 2469516,340
+     193 | 3858619,281
+     232 | 5556411,765
+     270 | 7562893,791
+     309 | 9878065,360
+     348 | 12501926,471
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: g
+Random generation.
+Initialization...done.
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      66 | 6282,596
+     132 | 25130,384
+     199 | 56543,365
+     265 | 100521,538
+     331 | 157064,903
+     397 | 226173,460
+     463 | 307847,209
+     530 | 402086,151
+     596 | 508890,285
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+Change item: scale factor 66.55257145438489
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      66 | 418122,926
+     132 | 1672491,706
+     199 | 3763106,338
+     265 | 6689966,824
+     331 | 10453073,162
+     397 | 15052425,353
+     463 | 20488023,397
+     530 | 26759867,294
+     596 | 33867957,044
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: u
+Undo last change
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      66 | 6282,596
+     132 | 25130,384
+     199 | 56543,365
+     265 | 100521,538
+     331 | 157064,903
+     397 | 226173,460
+     463 | 307847,209
+     530 | 402086,151
+     596 | 508890,285
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+      66 | 6282,596
+     132 | 25130,384
+     199 | 56543,365
+     265 | 100521,538
+     331 | 157064,903
+     397 | 226173,460
+     463 | 307847,209
+     530 | 402086,151
+     596 | 508890,285
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+     199 | 56543,365
+     265 | 100521,538
+     331 | 157064,903
+     397 | 226173,460
+     463 | 307847,209
+     530 | 402086,151
+     596 | 508890,285
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+     463 | 307847,209
+     530 | 402086,151
+     596 | 508890,285
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+Change item: scale factor 74.82442199169874
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      66 | 470091,622
+     132 | 1880366,490
+Change item: scale factor 74.82442199169874
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      66 | 470091,622
+     132 | 1880366,490
+     199 | 4230824,602
+     265 | 7521465,960
+     331 | 11752290,562
+     397 | 16923298,409
+     463 | 23034489,501
+     530 | 30085863,838
+     596 | 38077421,420
+     199 | 4230824,602
+     265 | 7521465,960
+     331 | 11752290,562
+     397 | 16923298,409
+     463 | 23034489,501
+     530 | 30085863,838
+     596 | 38077421,420
+--------------------
+Enter command...
+     463 | 23034489,501
+     530 | 30085863,838
+     596 | 38077421,420
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: r
+Restore last saved.
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: r
+Restore last saved.
+   side  | arrea sum
+--------------------
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: r
+Restore last saved.
+   side  | arrea sum
+--------------------
+       0 |    0,000
+   side  | arrea sum
+--------------------
+       0 |    0,000
+       0 | 2137,031
+       0 |    0,000
+       0 | 2137,031
+       0 | 2137,031
+       0 | 8548,123
+       0 | 19233,278
+       0 | 34192,494
+       0 | 53425,771
+       0 | 76933,111
+       0 | 104714,512
+       0 | 136769,974
+       0 | 173099,499
+--------------------
 ```
 ### При запуску + дебаг (для прикладу демонстрована спроба відновити  не існуюче збереження при увімкнених примусових зупинках неочікуваних виключень):
+```
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: u
+Undo last change
+   side  | arrea sum 
+--------------------
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: c
+Change item: scale factor 98.12189704437093
+   side  | arrea sum 
+--------------------
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+       0 |      NaN
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: g
+Random generation.
+Initialization...done.
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      89 | 11422,426
+     179 | 45689,706
+     268 | 102801,838
+     357 | 182758,822
+     446 | 285560,660
+     536 | 411207,350
+     625 | 559698,893
+     714 | 731035,289
+     804 | 925216,538
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: u
+Undo last change
+   side  | arrea sum
+--------------------
+       0 |    0,000
+      89 |  116,411
+     179 |  465,642
+     268 | 1047,695
+     357 | 1862,569
+     446 | 2910,264
+     536 | 4190,781
+     625 | 5704,118
+     714 | 7450,277
+     804 | 9429,257
+--------------------
+Enter command...
+'v'iew, 'g'enerate, 'c'hange, 'u'ndo, 's'ave, 'r'estore, 'q'uit: r
+Restore last saved.
+```
 ![test example1](img/debug1.png)
-![test example2](img/debug2.png)
 ### Результати тесту через JUnit Test:
 ![test result 1](img/junit1.png)
 ![test result 2](img/junit2.png)
+![test result 2](img/junit3.png)
 ___
