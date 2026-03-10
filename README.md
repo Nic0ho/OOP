@@ -461,6 +461,18 @@ public class ChangeConsoleCommand extends ChangeItemCommand implements ConsoleCo
     public ChangeConsoleCommand(View view)
     { this.view = view; }
 
+    /**
+     * Скасовує операцію масштабування, ділячи кожне значення на {@linkplain ChangeItemCommand#getOffset() offset}.<br>
+     * Після скасування задає значення offset до {@code 1.0}.
+     */
+    public void undo()
+    {
+        for (Item2d item : ((ViewResult)view).getItems())
+            item.setY(item.getY() / getOffset());
+        setOffset(1.0);
+        view.viewShow();
+    }
+
     @Override
     public char getKey()
     { return 'c'; }
@@ -850,6 +862,49 @@ public class SaveConsoleCommand implements ConsoleCommand
         catch(IOException e)
         { System.err.println("Serialization error: " + e); }
         view.viewShow();
+    }
+}
+```
+</details>
+
+#### **UndoConsoleCommand.java** - Консольна команда Undo, шаблон Command.
+<details>
+<summary>ПЕРЕГЛЯНУТИ</summary>
+
+```java
+package ex04;
+
+/**
+ * Консольна команда Undo; шаблон Command.<br>
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see ChangeConsoleCommand
+ */
+public class UndoConsoleCommand implements ConsoleCommand
+{
+    /** Посилання на команду {@linkplain ChangeConsoleCommand}, операцію якої необхідно скасувати */
+    private ChangeConsoleCommand change;
+
+    /**
+     * Ініціалізує поле {@linkplain UndoConsoleCommand#change}
+     * @param change об'єкт команди {@linkplain ChangeConsoleCommand}
+     */
+    public UndoConsoleCommand(ChangeConsoleCommand change)
+    { this.change = change; }
+
+    @Override
+    public char getKey()
+    { return 'u'; }
+
+    @Override
+    public String toString()
+    { return "'u'ndo"; }
+
+    @Override
+    public void execute()
+    {
+        System.out.println("Undo last change");
+        change.undo();
     }
 }
 ```

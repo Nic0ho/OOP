@@ -39,10 +39,15 @@ public class ChangeConsoleCommand extends ChangeItemCommand implements ConsoleCo
     public ChangeConsoleCommand(View view)
     { this.view = view; }
 
+    /**
+     * Скасовує операцію масштабування, ділячи кожне значення на {@linkplain ChangeItemCommand#getOffset() offset}.<br>
+     * Після скасування задає значення offset до {@code 1.0}.
+     */
     public void undo()
     {
         for (Item2d item : ((ViewResult)view).getItems())
             item.setY(item.getY() / getOffset());
+        setOffset(1.0);
         view.viewShow();
     }
 
