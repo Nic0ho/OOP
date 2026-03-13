@@ -28,8 +28,5 @@ public class UndoConsoleCommand implements ConsoleCommand
 
     @Override
     public void execute()
-    {
-        System.out.println("Undo last change");
-        change.undo();
-    }
+    { change.undo(); }
 }

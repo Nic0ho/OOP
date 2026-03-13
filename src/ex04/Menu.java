@@ -35,7 +35,7 @@ public class Menu implements Command
     @Override
     public String toString()
     {
-        String s = "Enter command...\n";
+        String s = "\nEnter command...\n";
         for(ConsoleCommand c: menu)
             s += c + ", ";
         s += "'q'uit: ";

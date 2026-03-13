@@ -1,12 +1,19 @@
-package ex04;
+package ex05;
 
 import ex02.View;
 import ex03.ViewableTable;
+import ex04.Menu;
+import ex04.ChangeConsoleCommand;
+import ex04.ViewConsoleCommand;
+import ex04.GenerateConsoleCommand;
+import ex04.UndoConsoleCommand;
+import ex04.SaveConsoleCommand;
+import ex04.RestoreConsoleCommand;
 
 /**
  * Формує та відображає меню; реалізує шаблон Singleton
  * @author Артем Єдалов
- * @version 1.0
+ * @version 2.0
 */
 public class Application
 {
@@ -57,6 +64,7 @@ public class Application
         menu.add(new UndoConsoleCommand(change));
         menu.add(new SaveConsoleCommand(view));
         menu.add(new RestoreConsoleCommand(view, change));
+        menu.add(new ExecuteConsoleCommand(view));
         menu.execute();
     }
 }

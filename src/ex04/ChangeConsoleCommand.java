@@ -45,10 +45,15 @@ public class ChangeConsoleCommand extends ChangeItemCommand implements ConsoleCo
      */
     public void undo()
     {
-        for (Item2d item : ((ViewResult)view).getItems())
-            item.setY(item.getY() / getOffset());
-        setOffset(1.0);
-        view.viewShow();
+        if(getOffset() != 1)
+        {
+            System.out.println("Undo last change");
+            for(Item2d item : ((ViewResult)view).getItems())
+                item.setY(item.getY() / getOffset());
+            setOffset(1.0);
+            view.viewShow();
+        }
+        else System.out.println("There is nothing to undo");
     }
 
     @Override

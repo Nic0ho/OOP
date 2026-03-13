@@ -6,8 +6,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ex02.ViewResult;
+import ex05.AvgCommand;
 import ex05.CommandQueue;
 import ex05.MaxCommand;
+import ex05.MinMaxCommand;
 
 public class MainTest
 {
@@ -31,7 +33,7 @@ public class MainTest
     @AfterClass
     public static void tearDownAfterClass()
     {
-        assertEquals(max1.getREsult(), max2.getResult());
+        assertEquals(max1.getResult(), max2.getResult());
         assertEquals(avg1.getResult(), avg2.getResult(), .1e-10);
         assertEquals(min1.getResultMax(), min2.getResultMax());
         assertEquals(min1.getResultMin(), min2.getResultMin());
@@ -71,6 +73,35 @@ public class MainTest
             TimeUnit.SECONDS.sleep(1);
         }
         catch(InterruptedException e)
-        fail(e.toString());
+        { fail(e.toString()); }
+    }
+
+    @Test
+    public void testAvgQueue()
+    {
+        queue.put(avg2);
+        try
+        {
+            while(avg2.running())
+                TimeUnit.MILLISECONDS.sleep(100);
+            queue.shutdown();
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch(InterruptedException e)
+        { fail(e.toString()); }
+    }
+
+    @Test
+    public void testMinQueue()
+    {
+        queue.put(min2);
+        try{
+            while(min2.running())
+                TimeUnit.MILLISECONDS.sleep(100);
+            queue.shutdown();
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch(InterruptedException e)
+        { fail(e.toString()); }
     }
 }

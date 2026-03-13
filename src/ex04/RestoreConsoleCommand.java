@@ -15,11 +15,13 @@ public class RestoreConsoleCommand implements ConsoleCommand
      */
     private View view;
 
+    private ChangeConsoleCommand change;
+
     /**
      * Ініціалізує поле {@linkplain RestoreConsoleCommand#view}
      * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
      */
-    public RestoreConsoleCommand(View view)
+    public RestoreConsoleCommand(View view, ChangeConsoleCommand change)
     { this.view = view; }
 
     @Override
@@ -34,7 +36,11 @@ public class RestoreConsoleCommand implements ConsoleCommand
     public void execute()
     {
         System.out.println("Restore last saved.");
-        try { view.viewRestore(); }
+        try
+        {
+            view.viewRestore();
+            change.setOffset(1.0);
+        }
         catch(Exception e) { System.err.println("Serialization error:" + e); }
         view.viewShow();
     }

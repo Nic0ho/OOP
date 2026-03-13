@@ -13,7 +13,7 @@ public class ChangeItemCommand implements Command
     private Item2d item;
 
     /** Параметр команди; шаблон Command */
-    private double offset;
+    private double offset = 1;
 
     /**
      * Встановлює поле {@linkplain ChangeItemCommand#item}
