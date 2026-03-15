@@ -48,7 +48,7 @@ public class MinMaxCommand implements Command
             idx++;
             progress = idx * 100 / size;
             if(idx % (size / 5) == 0)
-                System.out.println("MixMax " + progress + "%");
+                System.out.println("MinMax " + progress + "%");
             try { TimeUnit.MILLISECONDS.sleep(5000 / size); }
             catch(InterruptedException e)
             { System.err.println(e); }
