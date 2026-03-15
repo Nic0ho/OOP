@@ -5,16 +5,39 @@ import ex02.View;
 import ex02.ViewResult;
 import ex04.ConsoleCommand;
 
+/**
+ * Консольна команда Execute all threads; шаблон Command.<br>
+ * Створює дві черги задач та очікує завершення їх паралельного виконання.
+ * @author Артем Єдалов
+ * @version 1.0
+ */
 public class ExecuteConsoleCommand implements ConsoleCommand
 {
+    /**
+     * Об'єкт, що реалізує інтерфейс {@linkplain View};
+     * обслуговує колекцію об'єктів {@linkplain ex01.Item2d}
+     */
     private View view;
 
+    /**
+     * Повертає поле {@linkplain ExecuteConsoleCommand#view}
+     * @return значення {@linkplain ExecuteConsoleCommand#view}
+     */
     public View getView()
     { return view; }
 
+    /**
+     * Встановлює поле {@linkplain ExecuteConsoleCommand#view}
+     * @param view значення для {@linkplain ExecuteConsoleCommand#view}
+     * @return нове значення {@linkplain ExecuteConsoleCommand#view}
+     */
     public View setView(View view)
     { return this.view = view;}
 
+    /**
+     * Ініціалізує поле {@linkplain ExecuteConsoleCommand#view}
+     * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
+     */
     public ExecuteConsoleCommand(View view)
     { this.view = view; }
 
@@ -26,6 +49,11 @@ public class ExecuteConsoleCommand implements ConsoleCommand
     public String toString()
     { return "'e'xecute"; }
 
+    /**
+     * Створює дві черги {@linkplain CommandQueue},
+     * розміщує в них задачі {@linkplain MinMaxCommand}, {@linkplain MaxCommand}, {@linkplain AvgCommand} та очікує завершення їх паралельного виконання.<br>
+     * {@inheritDoc}
+     */
     @Override
     public void execute()
     {

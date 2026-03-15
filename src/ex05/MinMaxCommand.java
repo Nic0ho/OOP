@@ -5,31 +5,77 @@ import ex01.Item2d;
 import ex02.ViewResult;
 import ex04.Command;
 
+/**
+ * Задача, що використовується обробником потоку;<br>
+ * знаходить мінімальне позитивне та максимальне негативне значення {@linkplain ex01.Item2d#getY() y}; шаблон Worker Thread
+ * @author Артем Єдалов
+ * @version 1.0
+ * @see Command
+ * @see CommandQueue
+ */
 public class MinMaxCommand implements Command
 {
+    /** Індекс елемента з мінімальним позитивним y; -1 якщо не знайдено */
     private int resultMin = -1;
+
+    /** Індекс елемента з максимальним негативним y; -1 якщо не знайдено */
     private int resultMax = -1;
+
+    /** Прапорець готовності результату (0-99 — виконується, 100 — готово) */
     private int progress = 0;
+
+    /** Обслуговує колекцію об'єктів {@linkplain ex01.Item2d} */
     private ViewResult viewResult;
 
+    /**
+     * Повертає поле {@linkplain MinMaxCommand#viewResult}
+     * @return значення {@linkplain MinMaxCommand#viewResult}
+     */
     public ViewResult getViewResult()
     { return viewResult; }
 
+    /**
+     * Встановлює поле {@linkplain MinMaxCommand#viewResult}
+     * @param viewResult значення для {@linkplain MinMaxCommand#viewResult}
+     * @return нове значення {@linkplain MinMaxCommand#viewResult}
+     */
     public ViewResult setViewResult(ViewResult viewResult)
     { return this.viewResult = viewResult; }
 
+    /**
+     * Ініціалізує поле {@linkplain MinMaxCommand#viewResult}
+     * @param viewResult об'єкт класу {@linkplain ViewResult}
+     */
     public MinMaxCommand(ViewResult viewResult)
     { this.viewResult = viewResult; }
 
+    /**
+     * Повертає індекс елемента з мінімальним позитивним y
+     * @return поле {@linkplain MinMaxCommand#resultMin}
+     */
     public int getResultMin()
     { return resultMin; }
 
+    /**
+     * Повертає індекс елемента з максимальним негативним y
+     * @return поле {@linkplain MinMaxCommand#resultMax}
+     */
     public int getResultMax()
     { return resultMax; }
 
+    /**
+     * Перевіряє готовність результату
+     * @return {@code true} — якщо виконання ще не завершено
+     */
     public boolean running()
     { return progress < 100; }
 
+    /**
+     * Знаходить мінімальне позитивне та максимальне негативне
+     * значення {@linkplain ex01.Item2d#getY() y} у колекції;
+     * використовується обробником потоку {@linkplain CommandQueue};<br>
+     * шаблон Worker Thread
+     */
     @Override
     public void execute()
     {
