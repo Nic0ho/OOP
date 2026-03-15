@@ -22,7 +22,10 @@ public class RestoreConsoleCommand implements ConsoleCommand
      * @param view об'єкт, що реалізує інтерфейс {@linkplain View}
      */
     public RestoreConsoleCommand(View view, ChangeConsoleCommand change)
-    { this.view = view; }
+    {
+        this.view = view;
+        this.change = change;
+    }
 
     @Override
     public char getKey()
